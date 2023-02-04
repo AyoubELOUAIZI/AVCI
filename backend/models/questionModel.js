@@ -10,6 +10,7 @@ const questionSchema = new Schema({ // create new schema for workouts
         type: String, // should be a string 
         required: true // required field
     },
+    
 
 }, { timestamps: true });// adds timestamps to record when workout is created and updated
 const Question = mongoose.model("Question", questionSchema);

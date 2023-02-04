@@ -1,7 +1,7 @@
-const { request } = require("express");
+// const { request } = require("express");
 require('dotenv').config();
 const mongoose = require('mongoose');
-const workoutRoutes = require('./routes/workouts');
+const personRoutes = require('./routes/person');
 const express = require("express");
 const app = express();
 
@@ -12,18 +12,12 @@ const connectionString = process.env.MONGO_URI;
 app.use(express.json());
 
 //routes
-app.use('/api/workout', workoutRoutes);
-
-
+app.use('/api/person', personRoutes);
 
 //routes
 app.get("/", (req, res) => {
     res.send("Hello, World!");
 });
-
-
-
-
 
 //connecting with mongo db and then make the server listening in the port
 mongoose.connect(connectionString).then(() => {
@@ -33,8 +27,6 @@ mongoose.connect(connectionString).then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on port 4010 or 3000 Click http://localhost:${PORT}`);
     });
-
-
 })
     .catch(err => {
         console.log("Error connecting to the database: ", err);
