@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const {
     createPerson,
-    getAllperson,
-    deleteWorkout,
-    updateWorkout
 } = require('../controllers/personController');
 
 

@@ -1,5 +1,7 @@
 const PersonModel = require('../models/personModel');
 const mongoose = require('mongoose');
+// const PersonModel = mongoose.model("Person", PersonSchema);
+
 
 //1--Get all persons
 const getAllpersons = async (req, res) => {
@@ -34,11 +36,25 @@ const getperson = async (req, res) => {
 //-------------------------------------------------------------------------------------//
 
 //3--post a new person
+// const createPerson = async (req, res) => {
+//     const { age, gender, address, QA } = req.body;
+
+//     try {
+//         const person = await PersonModel.create({ age, gender, address, QA });
+//         res.status(200).json(person);
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// }
+//-------------------------------------------------------------------------------------//
+
 const createPerson = async (req, res) => {
-    const { age, gender, address, QA } = req.body;
+    console.log(req.body)
+    const { age, gender, address } = req.body;
+
 
     try {
-        const person = await PersonModel.create({ age, gender, address, QA });
+        const person = await PersonModel.create({ age, gender, address });
         res.status(200).json(person);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -82,9 +98,5 @@ const updateperson = async (req, res) => {
 };
 
 module.exports = {
-    getAllpersons,
     createPerson,
-    getperson,
-    deleteperson,
-    updateperson,
 };
