@@ -51,11 +51,9 @@ const getperson = async (req, res) => {
 const createPerson = async (req, res) => {
     console.log(req.body)
     const { age, gender, address } = req.body;
-
-
     try {
-        const person = await PersonModel.create({ age, gender, address });
         console.log("------------------------------------------");
+        const person = await PersonModel.create({ age, gender, address });
         console.log(person);
         res.status(200).json(person);
     } catch (error) {

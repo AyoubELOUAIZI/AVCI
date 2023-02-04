@@ -34,20 +34,28 @@ const mongoose = require("mongoose");
 
 // Create a schema for a person
 const personSchema = new mongoose.Schema({
+    fullName: {
+        type: String,
+        required: false
+    },
     age: {
         type: Number,
         required: false
     },
     gender: {
         type: String,
-        required: true
+        required: false
     },
     address: {
         type: String,
         required: false
-    }, 
-
-});
+    },
+    pic: {
+        type: Number,
+        required: false
+    },
+}, { timestaps: true }
+);
 
 
 // Create a schema for a question
@@ -62,7 +70,7 @@ const questionSchema = new mongoose.Schema({
     },
     Person: [{ type: mongoose.Schema.Types.ObjectId, ref: "Person" }],
 
-});
+}, { timestaps: true });
 
 // Create a model for the person schema
 const Person = mongoose.model("Person", personSchema);
