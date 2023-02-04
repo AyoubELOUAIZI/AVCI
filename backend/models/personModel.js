@@ -51,8 +51,8 @@ const personSchema = new mongoose.Schema({
         required: false
     },
     pic: {
-        type: Number,
-        required: false
+        type: String,
+        default: "https://github.com/AyoubELOUAIZI/MERN-Stack-chat-app/blob/master/backend/images/avatar-icon.jpg?raw=true"
     },
 }, { timestaps: true }
 );
