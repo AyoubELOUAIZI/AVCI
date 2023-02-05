@@ -1,4 +1,4 @@
-const PersonModel = require('../models/personModel');
+const Person = require('../models/personModel');
 const mongoose = require('mongoose');
 // const PersonModel = mongoose.model("Person", PersonSchema);
 
@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const getAllpersons = async (req, res) => {
     try {
         // Attempt to fetch all person documents from the database and sort them by the createdAt field in descending order
-        const persons = await PersonModel.find().sort({ createdAt: -1 });
+        const persons = await Person.find().sort({ createdAt: -1 });
         // If the fetch is successful, return a response with a 200 status code and the persons as the body
         res.status(200).json(persons);
     } catch (error) {
@@ -23,7 +23,7 @@ const getperson = async (req, res) => {
         return res.status(400).json({ error: 'Invalid person id' });
     }
     try {
-        const person = await PersonModel.findById(req.params.id);
+        const person = await Person.findById(req.params.id);
         if (!person) return res.status(404).json({ error: 'person not found' });
         res.status(200).json(person);
     } catch (error) {
@@ -53,7 +53,7 @@ const createPerson = async (req, res) => {
     const { age, gender, address } = req.body;
     try {
         console.log("------------------------------------------");
-        const person = await PersonModel.create({ age, gender, address });
+        const person = await Person.create({ age, gender, address });
         console.log(person);
         res.status(200).json(person);
     } catch (error) {
@@ -68,7 +68,7 @@ const deleteperson = async (req, res) => {
         return res.status(400).json({ error: 'Invalid person id' });
     }
     try {
-        const person = await PersonModel.findByIdAndDelete(req.params.id);
+        const person = await Person.findByIdAndDelete(req.params.id);
         if (!person) return res.status(404).json({ error: 'person not found' });
         res.status(200).json({ message: 'person deleted successfully' });
     } catch (error) {
@@ -86,7 +86,7 @@ const updateperson = async (req, res) => {
     }
     try {
         // Attempt to find and update the person document in the database using the id and data from the request
-        const person = await PersonModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const person = await Person.findByIdAndUpdate(req.params.id, req.body, { new: true });
         // If the person is not found, return a response with a 404 status code and an error message
         if (!person) return res.status(404).json({ error: 'person not found' });
         // If the update is successful, return a response with a 200 status code and the updated person as the body
